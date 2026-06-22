@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OUM Final Exam Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HOME SCREEN -->
+  <div id="screen-home" class="screen active">
+    <div class="hero">
+      <div class="hero-label">Open University Malaysia</div>
+      <h1>Final Exam Practice</h1>
+      <p>AI-powered MCQ quiz — select a subject and start practising</p>
+      <div class="powered-by">⚡ Powered by Groq AI</div>
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card" data-course="CBRE3103">
+        <span class="badge badge-blue">CBRE3103</span>
+        <h3>Requirements Engineering</h3>
+        <p>10 topics · Elicitation, modelling, specifications, V&amp;V, management</p>
+        <div class="card-footer">Bachelor of IT · 3 Credit Hours</div>
+      </div>
+      <div class="course-card" data-course="CBSM4203">
+        <span class="badge badge-teal">CBSM4203</span>
+        <h3>Strategic Information System</h3>
+        <p>8 topics · IS strategy, governance, competitive advantage, architecture</p>
+        <div class="card-footer">Bachelor of IT · 3 Credit Hours</div>
+      </div>
+      <div class="course-card" data-course="CBSN4103">
+        <span class="badge badge-coral">CBSN4103</span>
+        <h3>Network Security</h3>
+        <p>12 topics · Threats, firewalls, cryptography, intrusion detection</p>
+        <div class="card-footer">Bachelor of IT · 3 Credit Hours</div>
+      </div>
+    </div>
+
+    <div class="settings-panel" id="settingsPanel" style="display:none;">
+      <div class="settings-row">
+        <label for="qcount">Number of Questions</label>
+        <div class="slider-wrap">
+          <input type="range" id="qcount" min="5" max="40" step="5" value="10" />
+          <span class="slider-val" id="qcountval">10</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="homeError" class="error-box" style="display:none;"></div>
+
+    <div class="home-actions">
+      <button class="btn-primary" id="startBtn" disabled>Select a subject to begin</button>
+    </div>
+  </div>
+
+  <!-- LOADING SCREEN -->
+  <div id="screen-loading" class="screen">
+    <div class="loading-wrap">
+      <div class="spinner-ring"></div>
+      <h2 id="loadingTitle">Generating questions…</h2>
+      <p>This usually takes 10–20 seconds</p>
+      <div class="loading-progress">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="screen-quiz" class="screen">
+    <header class="quiz-header">
+      <div class="quiz-header-left">
+        <button class="btn-back" id="quitBtn">← Back</button>
+        <span class="quiz-badge" id="quizBadge"></span>
+        <span class="quiz-title" id="quizTitle"></span>
+      </div>
+      <div class="quiz-header-right">
+        <span class="score-chip" id="scoreChip">Score: 0</span>
+        <span class="q-counter" id="qCounter">1 / 10</span>
+      </div>
+    </header>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <main class="quiz-main">
+      <div class="question-card">
+        <div class="q-num" id="qNum">Question 1</div>
+        <div class="q-text" id="qText"></div>
+        <div class="options-list" id="optionsList"></div>
+        <div class="explanation-box" id="explanationBox" style="display:none;"></div>
+      </div>
+      <div class="quiz-nav">
+        <div class="hint-text" id="hintText">Select an answer to continue</div>
+        <button class="btn-primary" id="nextBtn" style="display:none;">Next Question →</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="screen-results" class="screen">
+    <div class="results-wrap">
+      <div class="results-badge" id="resultsBadge"></div>
+      <div class="results-score" id="resultsScore"></div>
+      <div class="results-grade" id="resultsGrade"></div>
+      <div class="stats-row">
+        <div class="stat-card stat-correct">
+          <div class="stat-num" id="statCorrect">0</div>
+          <div class="stat-label">Correct</div>
+        </div>
+        <div class="stat-card stat-wrong">
+          <div class="stat-num" id="statWrong">0</div>
+          <div class="stat-label">Incorrect</div>
+        </div>
+        <div class="stat-card stat-total">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">Total</div>
+        </div>
+      </div>
+      <div class="results-message" id="resultsMessage"></div>
+      <div class="results-actions">
+        <button class="btn-primary" id="retryBtn">Try Again →</button>
+        <button class="btn-secondary" id="changeSubjectBtn">Change Subject</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="courses.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
